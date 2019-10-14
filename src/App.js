@@ -2,6 +2,8 @@ import React from 'react'
 
 import axios from 'axios'
 
+import OPENWEATHERAPIKEY from './config'
+
 class App extends React.Component {
   constructor (props) {
     super(props)
@@ -14,7 +16,7 @@ class App extends React.Component {
   }
 
   componentDidMount () {
-    axios.get(`http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=dd6866086c793ca95487b4ee51f83cf5`)
+    axios.get(`http://api.openweathermap.org/data/2.5/forecast?id=${OPENWEATHERAPIKEY}`)
       .then(
         (res) => {
           this.setState({

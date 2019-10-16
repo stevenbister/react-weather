@@ -12,21 +12,28 @@ class App extends React.Component {
       error: null,
       isLoaded: false,
       items: [],
-
       city: undefined,
-      weather: undefined
-
+      weather: undefined,
+      temp: undefined
     }
   }
 
   componentDidMount () {
-    axios.get(`https://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=${OPENWEATHERAPIKEY}`)
+    const CITY = 'Birmingham'
+    const COUNTRY = 'uk'
+    const UNITS = 'metric'
+    // TODO: move this into it's own file and create base instance
+    // https://alligator.io/react/axios-react/
+    // https://www.npmjs.com/package/axios
+    axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${CITY},${COUNTRY}&units=${UNITS}&APPID=${OPENWEATHERAPIKEY}`)
       .then (response => response.data)
       .then ((data) => {
         this.setState({
           isLoaded: true,
           items: data,
-          city: data.city // FIXME: I'm only able to access the name here not in the component - why? - might be helpful https://www.techiediaries.com/react-axios/
+          city: data.name,
+          weather: data.weather[0].description,
+          temp: data.main.temp
         })
       },
         // Note: it's important to handle errors here
@@ -42,13 +49,23 @@ class App extends React.Component {
   }
 
   render () {
-    const { error, isLoaded, items, city } = this.state
-    return (
-      <div>
-        <h1>{city}</h1>
-        <h2></h2>
-      </div>
-    )
+    const { error, isLoaded, city, weather, temp } = this.state
+    if (error) {
+      return <div>Error: {error.message}</div>
+    } 
+    else if (!isLoaded) {
+      return <div>Loading...</div>
+    } 
+    else {
+      // TODO: Seperate these into components
+      return (
+        <div>
+          <h1>{city}</h1>
+          <h2>{weather}</h2>
+          <h2>{temp}&deg;C</h2>
+        </div>
+      )
+    }
   }
 }
 

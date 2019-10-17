@@ -1,5 +1,7 @@
 import React from "react"
 
+import { Search } from '../search/Search'
+
 import API from "../../utils/API"
 
 import OPENWEATHERAPIKEY from "../../config"
@@ -14,7 +16,9 @@ export class Weather extends React.Component {
       items: [],
       city: undefined,
       weather: undefined,
-      temp: undefined
+      temp: undefined,
+
+      citySearch: undefined
     }
   }
 
@@ -60,6 +64,8 @@ export class Weather extends React.Component {
       // TODO: Seperate these into components
       return (
         <div>
+          <Search />
+
           <h1>{city}</h1>
           <h2>{weather}</h2>
           <h2>{temp}&deg;C</h2>

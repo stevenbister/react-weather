@@ -6,7 +6,6 @@ import OPENWEATHERAPIKEY from './config'
 
 import { Weather } from './components/Weather'
 import { Search } from './components/Search'
-
 class App extends React.Component {
   constructor (props) {
     super(props)
@@ -68,12 +67,13 @@ class App extends React.Component {
   render () {
     const { error, isLoaded, city, weather, temp } = this.state
 
-    if (error) {
-      return <div>Error: {error.message}</div>
-    } else if (!isLoaded) {
-      return <div>Loading...</div>
-    } else {
+    // if (error) {
+    //   return <div>Error: {error.message}</div>
+    // } else if (!isLoaded) {
+    //   return <div>Loading...</div>
+    // } else {
       // TODO: Seperate these into components
+      // ! Search component needs to become a form that passes the api call on submit
       return (
         <div>
           <Search change={this.onInput} />
@@ -82,7 +82,7 @@ class App extends React.Component {
           <h2>{temp}&deg;C</h2>
         </div>
       )
-    }
+    // }
   }
 }
 

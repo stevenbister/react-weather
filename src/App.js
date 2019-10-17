@@ -78,13 +78,15 @@ class App extends React.Component {
     //   return <div>Loading...</div>
     // } else {
       // TODO: Seperate these into components
+      // TODO: Sort error messages
       return (
         <div>
           <Form onSubmit={this.search} />
+          { !isLoaded ? 'Loading...' : null }
           <h1>{city}</h1>
           <h2>{weather}</h2>
           <h2>{temp}&deg;C</h2>
-          {/* <h3>{error ? error.message : ''}</h3> */}
+          { error ? error.message : null } 
         </div>
       )
     // }

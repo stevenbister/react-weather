@@ -5,7 +5,7 @@ import API from './utils/API'
 import OPENWEATHERAPIKEY from './config'
 
 import { Weather } from './components/Weather'
-import { Search } from './components/Search'
+import { Form } from './components/Form'
 class App extends React.Component {
   constructor (props) {
     super(props)
@@ -17,17 +17,16 @@ class App extends React.Component {
       city: undefined,
       weather: undefined,
       temp: undefined,
-      search: undefined
+      search: 'Birmingham'
     }
 
-    // For input function
-    this.onInput = this.onInput.bind(this)
+    this.search = this.search.bind(this)
   }
 
-  apiCall (search) {
+  apiCall () {
     // const CITY = 'Birmingham'
     // const CITY = this.props.city
-    const CITY = search
+    const CITY = this.state.search
     const COUNTRY = 'uk'
     const UNITS = 'metric'
     API.get(`?q=${CITY},${COUNTRY}&units=${UNITS}&APPID=${OPENWEATHERAPIKEY}`)
@@ -54,14 +53,13 @@ class App extends React.Component {
       )
   }
 
-  // Function to set state when input is detected
-  onInput (search) {
-    this.setState({ search })
-    this.apiCall(search)
+  search (e) {
+    e.preventDefault()
+    this.setState({ search: e.target.elements.search.value })
   }
 
   componentDidMount () {
-    this.apiCall('birmingham')
+    this.apiCall()
   }
 
   render () {
@@ -76,7 +74,7 @@ class App extends React.Component {
       // ! Search component needs to become a form that passes the api call on submit
       return (
         <div>
-          <Search change={this.onInput} />
+          <Form onSubmit={this.search} />
           <h1>{city}</h1>
           <h2>{weather}</h2>
           <h2>{temp}&deg;C</h2>

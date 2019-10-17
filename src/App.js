@@ -20,16 +20,14 @@ class App extends React.Component {
       search: 'Birmingham'
     }
 
-    this.search = this.search.bind(this)
+    this.search = this.search.bind(this) // Bind search function
   }
 
-  apiCall () {
-    // const CITY = 'Birmingham'
-    // const CITY = this.props.city
+  apiCall = async () => {
     const CITY = this.state.search
     const COUNTRY = 'uk'
     const UNITS = 'metric'
-    API.get(`?q=${CITY},${COUNTRY}&units=${UNITS}&APPID=${OPENWEATHERAPIKEY}`)
+    await API.get(`?q=${CITY},${COUNTRY}&units=${UNITS}&APPID=${OPENWEATHERAPIKEY}`)
       .then(response => response.data)
       .then(
         data => {
@@ -53,11 +51,20 @@ class App extends React.Component {
       )
   }
 
-  search (e) {
-    e.preventDefault()
+  // Set search state to form's name='search' input
+  search = (e) => {
+    e.preventDefault() // Need to call this here to prevent the page reloading
     this.setState({ search: e.target.elements.search.value })
   }
 
+  // Make api call again if new state doesn't match previous state 
+  componentDidUpdate(prevState) {
+    if (this.state.search !== prevState.search) {
+      this.apiCall()
+    }
+  }
+
+  // Call api once component is mounted
   componentDidMount () {
     this.apiCall()
   }
@@ -71,13 +78,13 @@ class App extends React.Component {
     //   return <div>Loading...</div>
     // } else {
       // TODO: Seperate these into components
-      // ! Search component needs to become a form that passes the api call on submit
       return (
         <div>
           <Form onSubmit={this.search} />
           <h1>{city}</h1>
           <h2>{weather}</h2>
           <h2>{temp}&deg;C</h2>
+          {/* <h3>{error ? error.message : ''}</h3> */}
         </div>
       )
     // }

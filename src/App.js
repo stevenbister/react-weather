@@ -1,6 +1,6 @@
 import React from 'react'
 
-import axios from 'axios'
+import API from './utils/API'
 
 import OPENWEATHERAPIKEY from './config'
 
@@ -18,14 +18,11 @@ class App extends React.Component {
     }
   }
 
-  componentDidMount () {
+  apiCall() {
     const CITY = 'Birmingham'
     const COUNTRY = 'uk'
     const UNITS = 'metric'
-    // TODO: move this into it's own file and create base instance
-    // https://alligator.io/react/axios-react/
-    // https://www.npmjs.com/package/axios
-    axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${CITY},${COUNTRY}&units=${UNITS}&APPID=${OPENWEATHERAPIKEY}`)
+    API.get(`?q=${CITY},${COUNTRY}&units=${UNITS}&APPID=${OPENWEATHERAPIKEY}`)
       .then (response => response.data)
       .then ((data) => {
         this.setState({
@@ -46,6 +43,10 @@ class App extends React.Component {
           })
         }
       )
+  }
+
+  componentDidMount () {
+    this.apiCall()
   }
 
   render () {

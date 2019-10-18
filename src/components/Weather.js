@@ -60,7 +60,7 @@ export class Weather extends React.Component {
     const { error, isLoaded, city, weather, temp } = this.state
 
     if (error) {
-      return <div>Error: {error.message}</div>
+      return <div>Error: {error.response.data.message}</div>
     } else if (!isLoaded) {
       return <div>Loading...</div>
     } else {
@@ -78,5 +78,5 @@ export class Weather extends React.Component {
 
 // eslint-disable-next-line react/no-typos
 Weather.propTypes = {
-  search: PropTypes.string.isRequired
+  searchTerm: PropTypes.string.isRequired
 }

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import API from '../utils/API'
 import OPENWEATHERAPIKEY from '../config'
 
@@ -27,15 +28,13 @@ export class Weather extends React.Component {
         data => {
           this.setState({
             isLoaded: true,
+            error: null,
             items: data,
             city: data.name,
             weather: data.weather[0].description,
             temp: data.main.temp
           })
         },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
         error => {
           this.setState({
             isLoaded: true,
@@ -66,7 +65,6 @@ export class Weather extends React.Component {
       return <div>Loading...</div>
     } else {
       // TODO: Seperate these into components
-      // TODO: Sort error messages
       return (
         <div>
           <h1>{city}</h1>
@@ -76,4 +74,9 @@ export class Weather extends React.Component {
       )
     }
   }
+}
+
+// eslint-disable-next-line react/no-typos
+Weather.propTypes = {
+  search: PropTypes.string.isRequired
 }

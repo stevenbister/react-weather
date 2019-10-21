@@ -16,6 +16,7 @@ export class WeatherContainer extends React.Component {
       items: [],
       city: undefined,
       weather: undefined,
+      weatherIcon: undefined,
       temp: undefined,
     }
   }
@@ -63,7 +64,7 @@ export class WeatherContainer extends React.Component {
   render () {
     const { error, isLoaded, city, weather, weatherIcon } = this.state
     const temp = Math.round(this.state.temp) // Let's round the temperature to a whole number
-
+    
     if (error) {
       return <div>Error: {error.response.data.message}</div>
     } else if (!isLoaded) {

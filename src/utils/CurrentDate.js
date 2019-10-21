@@ -1,6 +1,14 @@
-function getCurrentDate() {
-  let d = new Date(Date.now()) 
-  return d.toDateString() // Return date as string
+function getCurrentDate () {
+  const d = new Date(Date.now())
+  const options = {
+    day: 'numeric',
+    month: 'long',
+    hour: '2-digit',
+    minute: '2-digit',
+    timeZoneName: 'short'
+  }
+
+  return d.toLocaleDateString('en', options) // Return date as string might change this to own
 }
 
 export default getCurrentDate

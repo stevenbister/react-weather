@@ -19,8 +19,8 @@ export class Form extends React.Component {
   render () {
     return (
       // onChange function is written in parent and set a prop here
-      <div>
-        <form onSubmit={this.props.onSubmit}>
+      <div className='grid-row'>
+        <form className='grid-cell' onSubmit={this.props.onSubmit}>
           <label>
             Search city:
             <input type='text' name='search' onChange={this.handleChange} value={this.state.value} />

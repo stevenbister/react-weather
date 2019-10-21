@@ -2,9 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import API from '../utils/API'
 import OPENWEATHERAPIKEY from '../config'
-import {City} from './City'
-import {Weather} from './Weather'
-import {Temp} from './Temp'
+import { City } from './City'
+import { Weather } from './Weather'
+import { Temp } from './Temp'
+import { Date } from './Date'
 
 export class WeatherContainer extends React.Component {
   constructor (props) {
@@ -72,10 +73,15 @@ export class WeatherContainer extends React.Component {
     } else {
       // TODO: Seperate these into components
       return (
-        <div>
-          <City cityName={city} />
+        <div className='grid-row center'>
+          <div className='grid-cell spans-12'>
+            <City cityName={city} />
+            <Date />
+          </div>
           <Weather weather={weather} icon={weatherIcon} />
-          <Temp temp={temp} />
+          <div className='grid-cell spans-12'>
+            <Temp temp={temp} />
+          </div>
         </div>
       )
     }

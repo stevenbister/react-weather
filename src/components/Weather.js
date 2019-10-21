@@ -8,9 +8,9 @@ export class Weather extends React.Component {
     //  https://create-react-app.dev/docs/using-the-public-folder
     const imgPath = `${process.env.PUBLIC_URL}/img/${icon}.svg`
     return (
-      <div>
-        <p>{this.props.weather}</p>
+      <div className='grid-cell spans-12'>
         <img src={imgPath} alt='' />
+        <p>{this.props.weather}</p>
       </div>
     )
   }

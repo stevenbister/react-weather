@@ -3,11 +3,7 @@ import PropTypes from 'prop-types'
 
 export class City extends React.Component {
   render () {
-    return (
-      <div>
-        <h1>{this.props.cityName}</h1>
-      </div>
-    )
+    return <h1>{this.props.cityName}</h1>
   }
 }
 

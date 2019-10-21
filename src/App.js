@@ -1,6 +1,6 @@
 import React from 'react'
 import { Form } from './components/Form'
-import { Weather } from './components/Weather'
+import { WeatherContainer } from './components/WeatherContainer'
 
 class App extends React.Component {
   constructor (props) {
@@ -23,7 +23,7 @@ class App extends React.Component {
     return (
       <div>
         <Form onSubmit={this.search} />
-        <Weather searchTerm={this.state.search} />
+        <WeatherContainer searchTerm={this.state.search} />
       </div>
     )
   }

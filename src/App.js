@@ -1,5 +1,6 @@
 import React from 'react'
 import { Form } from './components/Form'
+import { Date } from './components/Date'
 import { WeatherContainer } from './components/WeatherContainer'
 
 class App extends React.Component {
@@ -23,6 +24,7 @@ class App extends React.Component {
     return (
       <div>
         <Form onSubmit={this.search} />
+        <Date />
         <WeatherContainer searchTerm={this.state.search} />
       </div>
     )

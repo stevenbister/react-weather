@@ -10,12 +10,13 @@ export class Weather extends React.Component {
     return (
       <div>
         <p>{this.props.weather}</p>
-        <img src={imgPath} alt="" />
+        <img src={imgPath} alt='' />
       </div>
     )
   }
 }
 
 Weather.propTypes = {
-  weather: PropTypes.string.isRequired
+  weather: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired
 }

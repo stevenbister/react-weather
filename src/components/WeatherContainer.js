@@ -82,6 +82,7 @@ export class WeatherContainer extends React.Component {
           <div className='grid-cell spans-12'>
             <Temp temp={temp} />
           </div>
+          {/* TODO: add sunrise, wind and max-temp */}
         </div>
       )
     }

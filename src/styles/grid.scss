@@ -1,0 +1,41 @@
+$container-width: 1200px;
+$gap: .75rem;
+$cells: 12;
+
+// Round flex items' width
+@function round-width ($i) {
+  $width: floor(100 * $i * 100/ $cells) / 100;
+  @return $width#{"%"};
+}
+
+.grid {
+  
+  &-container {
+    height: calc(100vh - #{$gap*4}); // multiply by 4 to account for top and bottom padding
+    max-width: $container-width;
+    margin: 0 $gap;
+    padding: $gap*2;
+  }
+  
+  &-row {
+    display: flex;
+    flex-flow: row wrap;
+    margin-left: -$gap/2;
+    margin-right: -$gap/2;
+    overflow-x: hidden;
+  }
+
+  &-cell {
+    display: block;
+    flex: auto 1 0; // Default flex-basis to auto so we don't have to explicitly set width if we want an equal width grid
+    margin: 0 $gap/2 $gap;
+    text-align: center;
+
+    @for $i from 1 through $cells {
+      &.spans-#{$i} {
+        flex: calc(#{round-width($i)} - #{$gap});
+        max-width: calc(#{round-width($i)} - #{$gap});
+      }
+    }
+  }
+}

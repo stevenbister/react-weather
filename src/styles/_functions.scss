@@ -1,0 +1,12 @@
+/**
+ * @param {string} $input-size - size in px
+ * @param {string} $global-size - set to 16px
+ */
+// Work out rem value by entering px
+@function rem-calc($input-size, $global-size: 16) {
+  // input over global-size x 1px to make it a non value number 
+  $rem-val: $input-size / $global-size * 1;
+
+  // return rem value and append rem
+  @return #{$rem-val}rem;
+}

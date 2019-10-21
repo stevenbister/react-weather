@@ -1,5 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import '../styles/weather.scss'
+import '../styles/detail.scss'
+
+const size = {
+  width: 75,
+  height: 'auto'
+}
 
 export class Weather extends React.Component {
   render () {
@@ -8,9 +15,9 @@ export class Weather extends React.Component {
     //  https://create-react-app.dev/docs/using-the-public-folder
     const imgPath = `${process.env.PUBLIC_URL}/img/${icon}.svg`
     return (
-      <div className='grid-cell spans-12'>
-        <img src={imgPath} alt='' />
-        <p>{this.props.weather}</p>
+      <div className='grid-cell spans-12 weather-block'>
+        <img src={imgPath} alt='' style={size} />
+        <p className='detail'>{this.props.weather}</p>
       </div>
     )
   }

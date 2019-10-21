@@ -1,6 +1,7 @@
 import React from 'react'
 import { Form } from './components/Form'
 import { WeatherContainer } from './components/WeatherContainer'
+import './styles/grid.scss'
 
 class App extends React.Component {
   constructor (props) {

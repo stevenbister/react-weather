@@ -1,0 +1,14 @@
+@import-normalize; /* bring in normalize.css styles */
+@import './colors';
+
+body {
+  background: map-get($colors, 'white');
+  color: map-get($colors, 'black');
+  height: 100vh;
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+}
+
+h1, p {
+  text-transform: uppercase;
+}

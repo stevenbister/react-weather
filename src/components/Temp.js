@@ -1,9 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import '../styles/temp.scss'
 
 export class Temp extends React.Component {
   render () {
-    return <p>{this.props.temp}&deg;C</p>
+    return <p className='temp'>{this.props.temp}&deg;C</p>
   }
 }
 

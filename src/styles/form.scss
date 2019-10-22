@@ -30,13 +30,13 @@ input {
 }
 
 input[type='text'] {
-  border: solid 1px map-get($colors, 'grey');
+  border: solid 1px var(--grey);
   flex-grow: 2;
 }
 
 input[type='submit'] {
-  background: map-get($colors, 'orange');
-  border: solid 1px map-get($colors, 'orange');
+  background: var(--orange);
+  border: solid 1px var(--orange);
   flex-grow: 1;
   cursor: pointer;
 }

@@ -6,7 +6,7 @@
   font-size: rem-calc(36);
 
   &::after {
-    border: solid 2px map-get($colors, 'grey');
+    border: solid 2px var(--grey);
     border-radius: 2px;
     content: '';
     display: block;

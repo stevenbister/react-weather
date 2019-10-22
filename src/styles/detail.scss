@@ -1,7 +1,9 @@
 @import './colors';
 
+$grey: #d0d0cf;
+
 .detail {
-  color: darken(map-get($colors, 'grey'), 30%);
+  color: darken($grey, 30%);
   font-size: .875rem; // 14px
   margin: 0;
 }

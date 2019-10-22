@@ -1,7 +1,15 @@
-$colors: (
-  'black': #0e0e0e,
-  'white': #fbfbfb,
-  'blue': #9dbfc9,
-  'orange': #fe951b,
-  'grey': #d0d0cf
-);
+// $colors: (
+//   'black': #0e0e0e,
+//   'white': #fbfbfb,
+//   'blue': #9dbfc9,
+//   'orange': #fe951b,
+//   'grey': #d0d0cf
+// );
+
+:root {
+  --black: #0e0e0e;
+  --white: #fbfbfb;
+  --blue: #9dbfc9;
+  --orange: #fe951b;
+  --grey: #d0d0cf;
+}

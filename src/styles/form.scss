@@ -2,14 +2,31 @@
 @import './mixins';
 @import './functions';
 
-.search-form {
+$border-radius: 5px;
+
+.form-search {
+  margin-bottom: rem-calc(30);
+}
+
+.form-group {
   display: flex;
   flex-flow: row wrap;
+
+  input[type='text'] {
+    border-top-left-radius: $border-radius;
+    border-bottom-left-radius: $border-radius;
+    border-right: none;
+  }
+
+  input[type='submit'] {
+    border-top-right-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+  }
 }
 
 input {
-  font-size: rem-calc(14);
-  padding: 7px 11px;
+  font-size: rem-calc(15);
+  padding: 8px 12px;
 }
 
 input[type='text'] {
@@ -18,7 +35,10 @@ input[type='text'] {
 }
 
 input[type='submit'] {
+  background: map-get($colors, 'orange');
+  border: solid 1px map-get($colors, 'orange');
   flex-grow: 1;
+  cursor: pointer;
 }
 
 label {

@@ -22,10 +22,12 @@ export class Form extends React.Component {
     return (
       // onChange function is written in parent and set a prop here
       <div className='grid-row'>
-        <form className='grid-cell search-form' onSubmit={this.props.onSubmit}>
-          <label for='search'>Search city:</label>
-          <input id='search' type='text' name='search' onChange={this.handleChange} value={this.state.value} />
-          <input type='submit' value='Submit' />
+        <form className='grid-cell form-search' onSubmit={this.props.onSubmit}>
+          <label for='search'>Search for your city</label>
+          <div className="form-group">
+            <input id='search' type='text' name='search' placeholder='Search for your city...' onChange={this.handleChange} value={this.state.value} />
+            <input type='submit' value='Search' />
+          </div>
         </form>
       </div>
     )

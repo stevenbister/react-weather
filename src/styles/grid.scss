@@ -11,7 +11,6 @@ $cells: 12;
 .grid {
   
   &-container {
-    height: calc(100vh - #{$gap*4}); // multiply by 4 to account for top and bottom padding
     max-width: $container-width;
     margin: 0 $gap;
     padding: $gap*2;

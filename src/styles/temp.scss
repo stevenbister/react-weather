@@ -1,5 +1,15 @@
+@import './colors';
 @import './functions';
 
 .temp {
+  display: inline-block;
   font-size: rem-calc(36);
+
+  &::after {
+    border: solid 2px map-get($colors, 'grey');
+    border-radius: 2px;
+    content: '';
+    display: block;
+    margin-top: rem-calc(12);
+  }
 }

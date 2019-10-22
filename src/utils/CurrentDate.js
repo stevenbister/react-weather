@@ -3,9 +3,9 @@ function getCurrentDate () {
   const options = {
     day: 'numeric',
     month: 'long',
-    hour: '2-digit',
+    hour: 'numeric',
     minute: '2-digit',
-    timeZoneName: 'short'
+    // timeZoneName: 'short'
   }
 
   return d.toLocaleDateString('en', options) // Return date as string might change this to own

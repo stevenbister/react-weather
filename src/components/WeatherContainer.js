@@ -6,6 +6,8 @@ import { City } from './City'
 import { Weather } from './Weather'
 import { Temp } from './Temp'
 import { Date } from './Date'
+import { Wind } from './Wind'
+import { Sun } from './Sun'
 
 export class WeatherContainer extends React.Component {
   constructor (props) {
@@ -38,7 +40,10 @@ export class WeatherContainer extends React.Component {
             city: data.name,
             weather: data.weather[0].description,
             weatherIcon: data.weather[0].icon,
-            temp: data.main.temp
+            temp: data.main.temp,
+            sunrise: data.sys.sunrise,
+            sunset: data.sys.sunset,
+            windSpeed: data.wind.speed
           })
         },
         error => {
@@ -63,7 +68,7 @@ export class WeatherContainer extends React.Component {
   }
 
   render () {
-    const { error, isLoaded, city, weather, weatherIcon } = this.state
+    const { error, isLoaded, city, weather, weatherIcon, sunset, sunrise, windSpeed } = this.state
     const temp = Math.round(this.state.temp) // Let's round the temperature to a whole number
     
     if (error) {
@@ -71,7 +76,6 @@ export class WeatherContainer extends React.Component {
     } else if (!isLoaded) {
       return <div>Loading...</div>
     } else {
-      // TODO: Seperate these into components
       return (
         <div className='grid-row center'>
           <div className='grid-cell spans-12'>
@@ -83,6 +87,11 @@ export class WeatherContainer extends React.Component {
             <Temp temp={temp} />
           </div>
           {/* TODO: add sunrise, wind and max-temp */}
+          <div>
+            <Wind windSpeed={windSpeed}/>
+            {/* TODO: convert time string to time obj */}
+            <Sun sunSet={sunset} sunRise={sunrise} />
+          </div>
         </div>
       )
     }

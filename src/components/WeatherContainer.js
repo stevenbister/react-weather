@@ -88,9 +88,9 @@ export class WeatherContainer extends React.Component {
           </div>
           {/* TODO: add sunrise, wind and max-temp */}
           <div>
+            <Sun sun={sunrise} desc={'Sunrise'} />
+            <Sun sun={sunset} desc={'Sunset'} />
             <Wind windSpeed={windSpeed}/>
-            {/* TODO: convert time string to time obj */}
-            <Sun sunSet={sunset} sunRise={sunrise} />
           </div>
         </div>
       )

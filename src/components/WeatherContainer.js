@@ -22,14 +22,21 @@ export class WeatherContainer extends React.Component {
       weatherIcon: undefined,
       temp: undefined,
     }
+
+    this.apiCall = this.apiCall.bind(this)
+    this.getLocation = this.getLocation.bind(this)
+
   }
 
-  apiCall = async () => {
+  apiCall = async (call) => {
     const CITY = this.props.searchTerm
-    // const CITY = 'Birmingham'
     const COUNTRY = 'uk'
+    const COORDS = call
     const UNITS = 'metric'
-    await API.get(`?q=${CITY},${COUNTRY}&units=${UNITS}&APPID=${OPENWEATHERAPIKEY}`)
+    // const APIgetString = `?q=${CITY},${COUNTRY}&units=${UNITS}&APPID=${OPENWEATHERAPIKEY}`
+    const APIgetString = `?${COORDS}&units=${UNITS}&APPID=${OPENWEATHERAPIKEY}`
+
+    await API.get(APIgetString)
       .then(response => response.data)
       .then(
         data => {
@@ -55,9 +62,45 @@ export class WeatherContainer extends React.Component {
       )
   }
 
+  // Let's get the browser's geolocation
+  // https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition
+  getLocation () {
+    const options = {
+      maximumAge: 0,
+      timeout: 5000
+    }
+
+    const success = (pos) => {
+      const coord = pos.coords
+      const lat = coord.latitude
+      const lng = coord.longitude
+
+      // make apiCall as part of the success callback function
+      this.apiCall(`lat=${lat}&lon=${lng}`)
+    }
+
+    const error = (err) => {
+      console.warn(`ERROR(${err.code}): ${err.message}`)
+      this.setState ({
+        error: err.message
+      })
+    }
+
+    // https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(success, error, options)
+    } else {
+      this.setState({
+        error: 'Geolocation declined'
+      })
+    }
+  }
+
   // Call api once component is mounted
   componentDidMount () {
-    this.apiCall()
+    // this.apiCall()
+    // Call getLocation here instead of apiCall as it will be part of the sucess callback
+    this.getLocation()
   }
 
   // Make api call again if new state doesn't match previous state 

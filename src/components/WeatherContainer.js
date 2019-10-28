@@ -33,10 +33,18 @@ export class WeatherContainer extends React.Component {
     const COUNTRY = 'uk'
     const COORDS = call
     const UNITS = 'metric'
-    // const APIgetString = `?q=${CITY},${COUNTRY}&units=${UNITS}&APPID=${OPENWEATHERAPIKEY}`
-    const APIgetString = `?${COORDS}&units=${UNITS}&APPID=${OPENWEATHERAPIKEY}`
+    
+    // Check if city or postcode has been searched for otherwise default to geolocation
+    // TODO: add postcode option
+    const APIgetString = () => {
+      if (CITY) {
+        return `?q=${CITY},${COUNTRY}&units=${UNITS}&APPID=${OPENWEATHERAPIKEY}`
+      } else {
+        return `?${COORDS}&units=${UNITS}&APPID=${OPENWEATHERAPIKEY}`
+      }
+    }
 
-    await API.get(APIgetString)
+    await API.get(APIgetString())
       .then(response => response.data)
       .then(
         data => {
@@ -82,6 +90,7 @@ export class WeatherContainer extends React.Component {
     const error = (err) => {
       console.warn(`ERROR(${err.code}): ${err.message}`)
       this.setState ({
+        isLoaded: true,
         error: err.message
       })
     }

@@ -8,7 +8,7 @@ class App extends React.Component {
     super(props)
 
     this.state = {
-      search: 'Birmingham'
+      search: ''
     }
 
     this.search = this.search.bind(this) // Bind search function

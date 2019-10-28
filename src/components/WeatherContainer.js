@@ -5,7 +5,7 @@ import OPENWEATHERAPIKEY from '../config'
 import { City } from './City'
 import { Weather } from './Weather'
 import { Temp } from './Temp'
-import { Date, DateComponent } from './DateComponent'
+import { DateComponent } from './DateComponent'
 import { Wind } from './Wind'
 import { Sun } from './Sun'
 

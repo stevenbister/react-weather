@@ -64,7 +64,7 @@ export class WeatherContainer extends React.Component {
         error => {
           this.setState({
             isLoaded: true,
-            error
+            error: error.response.data.message
           })
         }
       )
@@ -107,7 +107,6 @@ export class WeatherContainer extends React.Component {
 
   // Call api once component is mounted
   componentDidMount () {
-    // this.apiCall()
     // Call getLocation here instead of apiCall as it will be part of the sucess callback
     this.getLocation()
   }
@@ -124,7 +123,7 @@ export class WeatherContainer extends React.Component {
     const temp = Math.round(this.state.temp) // Let's round the temperature to a whole number
     
     if (error) {
-      return <div>Error: {error.response.data.message}</div>
+      return <div>Error: {error}</div>
     } else if (!isLoaded) {
       return <div>Loading...</div>
     } else {

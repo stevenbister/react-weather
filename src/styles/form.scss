@@ -18,7 +18,7 @@ $border-radius: 5px;
     border-right: none;
   }
 
-  input[type='submit'] {
+  .submit {
     border-top-right-radius: $border-radius;
     border-bottom-right-radius: $border-radius;
   }
@@ -34,13 +34,15 @@ input[type='text'] {
   flex-grow: 2;
 }
 
-input[type='submit'] {
+.submit {
   background: var(--orange);
   border: solid 1px var(--orange);
-  flex-grow: 1;
   cursor: pointer;
+  flex-grow: 1;
+  max-width: rem-calc(45);
 }
 
-label {
+label,
+.sr-only {
   @include sr-only;
 }

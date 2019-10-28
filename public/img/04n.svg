@@ -1,1 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36"><path fill="none" d="M0 0h24v24H0z"/><path d="M9.5 6a6.5 6.5 0 0 0 0 13h7a4.5 4.5 0 1 0-.957-8.898A6.502 6.502 0 0 0 9.5 6zm7 15h-7a8.5 8.5 0 1 1 7.215-12.997A6.5 6.5 0 0 1 16.5 21z" fill="#000"/></svg>
+<svg class="feather feather-cloud" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+ <g stroke="#848482">
+  <path d="m16.915 8.6638h-1.1532a7.3218 7.3218 0 1 0-7.0838 9.1522h8.237a4.5761 4.5761 0 0 0 0-9.1522z" stroke-width="1.8304"/>
+  <path d="m19.558 15.008h-0.93038a5.9072 5.9072 0 1 0-5.7152 7.384h6.6456a3.692 3.692 0 0 0 0-7.384z" fill="#848482" stroke-width="1.4768"/>
+ </g>
+</svg>

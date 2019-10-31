@@ -21,8 +21,12 @@ class App extends React.Component {
   }
 
   render () {
+    const fullHeight = {
+      height: '100vh'
+    }
+
     return (
-      <div className='grid-container'>
+      <div className='grid-container' style={fullHeight}>
         <Form onSubmit={this.search} />
         <WeatherContainer searchTerm={this.state.search} />
       </div>

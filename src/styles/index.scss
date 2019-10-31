@@ -1,6 +1,10 @@
 @import-normalize; /* bring in normalize.css styles */
 @import './colors';
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 body {
   background: var(--white);
   color: var(--black);

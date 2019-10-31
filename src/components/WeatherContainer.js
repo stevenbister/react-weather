@@ -1,16 +1,17 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import API from '../utils/API'
-import OPENWEATHERAPIKEY from '../config'
-import { City } from './City'
-import { Weather } from './Weather'
-import { Temp } from './Temp'
-import { DateComponent } from './DateComponent'
-import { Wind } from './Wind'
-import { Sun } from './Sun'
+import React from "react"
+import PropTypes from "prop-types"
+import API from "../utils/API"
+import OPENWEATHERAPIKEY from "../config"
+import { City } from "./City"
+import { Weather } from "./Weather"
+import { Temp } from "./Temp"
+import { DateComponent } from "./DateComponent"
+import { Wind } from "./Wind"
+import { Sun } from "./Sun"
+import DotLoader from "react-spinners/DotLoader"
 
 export class WeatherContainer extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -20,20 +21,19 @@ export class WeatherContainer extends React.Component {
       city: undefined,
       weather: undefined,
       weatherIcon: undefined,
-      temp: undefined,
+      temp: undefined
     }
 
     this.apiCall = this.apiCall.bind(this)
     this.getLocation = this.getLocation.bind(this)
-
   }
 
-  apiCall = async (call) => {
+  apiCall = async call => {
     const CITY = this.props.searchTerm
-    const COUNTRY = 'uk'
+    const COUNTRY = "uk"
     const COORDS = call
-    const UNITS = 'metric'
-    
+    const UNITS = "metric"
+
     // Check if city or postcode has been searched for otherwise default to geolocation
     // TODO: add postcode option
     const APIgetString = () => {
@@ -72,13 +72,13 @@ export class WeatherContainer extends React.Component {
 
   // Let's get the browser's geolocation
   // https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition
-  getLocation () {
+  getLocation() {
     const options = {
       maximumAge: 0,
       timeout: 5000
     }
 
-    const success = (pos) => {
+    const success = pos => {
       const coord = pos.coords
       const lat = coord.latitude
       const lng = coord.longitude
@@ -87,9 +87,9 @@ export class WeatherContainer extends React.Component {
       this.apiCall(`lat=${lat}&lon=${lng}`)
     }
 
-    const error = (err) => {
+    const error = err => {
       console.warn(`ERROR(${err.code}): ${err.message}`)
-      this.setState ({
+      this.setState({
         isLoaded: true,
         error: err.message
       })
@@ -100,52 +100,83 @@ export class WeatherContainer extends React.Component {
       navigator.geolocation.getCurrentPosition(success, error, options)
     } else {
       this.setState({
-        error: 'Geolocation declined'
+        error: "Geolocation declined"
       })
     }
   }
 
   // Call api once component is mounted
-  componentDidMount () {
+  componentDidMount() {
     // Call getLocation here instead of apiCall as it will be part of the sucess callback
     this.getLocation()
   }
 
-  // Make api call again if new state doesn't match previous state 
+  // Make api call again if new state doesn't match previous state
   componentDidUpdate(prevProps) {
     if (this.props.searchTerm !== prevProps.searchTerm) {
       this.apiCall()
     }
   }
 
-  render () {
-    const { error, isLoaded, city, weather, weatherIcon, sunset, sunrise, windSpeed } = this.state
+  render() {
+    const {
+      error,
+      isLoaded,
+      city,
+      weather,
+      weatherIcon,
+      sunset,
+      sunrise,
+      windSpeed
+    } = this.state
+    
     const temp = Math.round(this.state.temp) // Let's round the temperature to a whole number
     
+    const center = {
+      display: "flex",
+      justifyContent: "center"
+    };
+
+    const height75 = {
+      height: '75%',
+      alignItems: 'center'
+    }
+
     if (error) {
       return <div>Error: {error}</div>
     } else if (!isLoaded) {
-      return <div>Loading...</div>
+      return (
+        <div className="grid-row" style={height75}>
+          <div className="grid-cell spans-12" style={center}>
+            <DotLoader
+              sizeUnit={"px"}
+              size={50}
+              color={"#fe951b"}
+              loading={this.state.loading}
+            />
+          </div>
+        </div>
+      )
     } else {
       return (
-        <div className='grid-row center'>
-          <div className='grid-cell spans-12'>
+        <div className="grid-row">
+          <div className="grid-cell spans-12">
             <City cityName={city} />
             <DateComponent />
           </div>
           <Weather weather={weather} icon={weatherIcon} />
-          <div className='grid-cell spans-12'>
+          <div className="grid-cell spans-12">
             <Temp temp={temp} />
           </div>
           {/* TODO: add sunrise, wind and max-temp */}
-          <div className='grid-cell spans-4'>
-            <Sun sun={sunrise} desc={'Sunrise'} />
+          <div className="grid-cell spans-4">
+            <Sun sun={sunrise} desc={"Sunrise"} />
           </div>
-          <div className='grid-cell spans-4'>
-            <Sun sun={sunset} desc={'Sunset'} />
+          <div className="grid-cell spans-4">
+            <Sun sun={sunset} desc={"Sunset"} />
           </div>
-          <div className='grid-cell spans-4'>
-            <Wind windSpeed={windSpeed}/>
+          <div className="grid-cell spans-4">
+            <Wind windSpeed={windSpeed} />
           </div>
         </div>
       )

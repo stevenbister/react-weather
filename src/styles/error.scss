@@ -1,0 +1,13 @@
+@import './functions';
+
+.error {
+  h1, p {
+    text-transform: none;
+  }
+
+  h1 {
+    font-size: rem-calc(24);
+    margin: .5rem 0;
+  }
+  
+}

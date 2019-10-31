@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { ReactComponent as SearchIcon } from '../icons/search.svg'
 import '../styles/grid.scss'
 import '../styles/form.scss'
 
@@ -28,7 +29,7 @@ export class Form extends React.Component {
             <input id='search' type='text' name='search' placeholder='Search for your city...' onChange={this.handleChange} value={this.state.value} />
             {/* <input type='submit' value='Search' /> */}
             <button form='searchForm' className='submit'>
-              <img src={`${process.env.PUBLIC_URL}/img/search.svg`} />
+              <SearchIcon title='Magnifying glass' />
               <span className='sr-only'>Search</span>
             </button>
           </div>

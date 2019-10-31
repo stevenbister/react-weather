@@ -1,17 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { ReactComponent as SunRiseIcon } from '../icons/sunrise.svg'
+import { ReactComponent as SunSetIcon } from '../icons/sunset.svg'
 import '../styles/detail.scss'
-
-const size = {
-  width: 25,
-  height: 'auto',
-  marginBottom: '.5rem'
-}
-
-const margin = {
-  marginTop: 0,
-  marginBottom: '.5rem'
-}
 
 export class Sun extends React.Component {
   constructor (props) {
@@ -29,13 +20,13 @@ export class Sun extends React.Component {
   }
 
   render () {
-    const icon = this.props.desc === 'Sunrise' ? 'sunrise' : 'sunset'
-    const imgPath = `${process.env.PUBLIC_URL}/img/${icon}.svg`
+    const icon = this.props.desc === 'Sunrise' ? <SunRiseIcon title='Sunrise' width='25' height='auto' /> : <SunSetIcon title='Sunset' width='25' height='auto' />
+    // const imgPath = `${process.env.PUBLIC_URL}/img/${icon}.svg`
     return (
       <div>
-        <img src={imgPath} alt='' style={size} />
-        <p className='detail' style={margin}>{this.props.desc}</p>
-        <p style={margin}>{this.formatTimeString(this.props.sun)}</p>
+        {icon}
+        <p className='detail'>{this.props.desc}</p>
+        <p>{this.formatTimeString(this.props.sun)}</p>
       </div>
     )
   }

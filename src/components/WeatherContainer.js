@@ -46,8 +46,8 @@ export class WeatherContainer extends React.Component {
     }
 
     await API.get(APIgetString())
-      .then(response => response.data)
-      .then(
+      .then (response => response.data)
+      .then (
         data => {
           this.setState({
             isLoaded: true,
@@ -69,6 +69,10 @@ export class WeatherContainer extends React.Component {
           })
         }
       )
+
+      // Pass weather icon up to app component so we can use it to determine if it's night or day
+      // symbolised by the 'n' or 'd' in the icon code
+      this.props.passIcon(this.state.weatherIcon)
   }
 
   // Let's get the browser's geolocation
@@ -105,7 +109,7 @@ export class WeatherContainer extends React.Component {
       })
     }
   }
-
+  
   // Call api once component is mounted
   componentDidMount() {
     // Call getLocation here instead of apiCall as it will be part of the sucess callback

@@ -1,8 +1,8 @@
-@import './colors';
-@import './mixins';
-@import './functions';
-
 $border-radius: 5px;
+$grey: #d0d0cf;
+
+@import './functions';
+@import './mixins';
 
 .form-search {
   margin-bottom: rem-calc(30);
@@ -24,14 +24,17 @@ $border-radius: 5px;
   }
 }
 
-input {
+.input__text {
+  background: transparent;
+  border: solid 1px var(--grey);
+  color: darken($grey, 30%);
+  flex-grow: 2;
   font-size: rem-calc(15);
   padding: 8px 12px;
-}
 
-input[type='text'] {
-  border: solid 1px var(--grey);
-  flex-grow: 2;
+  &--dark {
+    color: var(--white);
+  }
 }
 
 .submit {

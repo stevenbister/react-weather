@@ -26,8 +26,7 @@ export class Form extends React.Component {
         <form id='searchForm' className='grid-cell form-search' onSubmit={this.props.onSubmit}>
           <label htmlFor='search'>Search for your city</label>
           <div className='form-group'>
-            <input id='search' type='text' name='search' placeholder='Search for your city...' onChange={this.handleChange} value={this.state.value} />
-            {/* <input type='submit' value='Search' /> */}
+            <input id='search' type='text' name='search' placeholder='Search for your city...' onChange={this.handleChange} value={this.state.value} className={ this.props.mode === 'night' ? 'input__text input__text--dark' : 'input__text' }/>
             <button form='searchForm' className='submit'>
               <SearchIcon title='Magnifying glass' />
               <span className='sr-only'>Search</span>

@@ -34,7 +34,7 @@ class App extends React.Component {
   }
 
   render () {
-    let container = {
+    const container = {
       height: '100vh'
     }
 
@@ -43,27 +43,31 @@ class App extends React.Component {
     const mode = () => {
       if (this.state.mode === 'day') {
 
-        let container = {
+        let wrapper = {
           background: 'var(--white)',
+          color: 'var(--black)',
           height: '100vh'
         }
-        return container
+        return wrapper
 
       } else if (this.state.mode === 'night') {
 
-        let container = {
+        let wrapper = {
           background: 'var(--black)',
+          color: 'var(--white)',
           height: '100vh'
         }
-        return container
+        return wrapper
 
       }
     }
 
     return (
-      <div className='grid-container' style={Object.assign({}, container, mode())}>
-        <Form onSubmit={this.search} />
-        <WeatherContainer searchTerm={this.state.search} passIcon={this.iconCallback}/>
+      <div style={mode()}>
+        <div className='grid-container' style={container}>
+          <Form onSubmit={this.search} mode={this.state.mode} />
+          <WeatherContainer searchTerm={this.state.search} passIcon={this.iconCallback}/>
+        </div>
       </div>
     )
   }

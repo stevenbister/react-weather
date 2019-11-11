@@ -1,3 +1,4 @@
+import Countries from '../countries'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { ReactComponent as SearchIcon } from '../icons/search.svg'
@@ -9,24 +10,65 @@ export class Form extends React.Component {
     super(props)
 
     this.state = {
-      value: ''
+      textInput: '',
+      select: ''
     }
 
-    this.handleChange = this.handleChange.bind(this)
+    this.handleTextInputChange = this.handleTextInputChange.bind(this)
+    this.handleSelectChange = this.handleSelectChange.bind(this)
   }
 
-  handleChange (e) {
-    this.setState({ value: e.target.value }) // Set property to value of input
+  handleTextInputChange (e) {
+    this.setState({ textInput: e.target.value }) // Set property to value of input
+  }
+
+  handleSelectChange (e) {
+    this.setState({ select: e.target.value })
   }
 
   render () {
     return (
       // onChange function is written in parent and set a prop here
       <div className='grid-row'>
-        <form id='searchForm' className='grid-cell form-search' onSubmit={this.props.onSubmit}>
-          <label htmlFor='search'>Search for your city</label>
+        <form
+          id='searchForm'
+          className='grid-cell form-search'
+          onSubmit={this.props.onSubmit}
+        >
           <div className='form-group'>
-            <input id='search' type='text' name='search' placeholder='Search for your city...' onChange={this.handleChange} value={this.state.value} className={ this.props.mode === 'night' ? 'input__text input__text--dark' : 'input__text' }/>
+            <label htmlFor='citySearch'>Search for your city</label>
+            <input
+              id='citySearch'
+              type='text'
+              name='search'
+              placeholder='Search for your city...'
+              onChange={this.handleTextInputChange}
+              value={this.state.textInput}
+              className={
+                this.props.mode === 'night'
+                  ? 'input__text input__text--dark'
+                  : 'input__text'
+              }
+            />
+
+            <label htmlFor='countrySelect'>Pick your country</label>
+            <select
+              id='countrySelect'
+              value={this.state.select}
+              onChange={this.handleSelectChange}
+            >
+              <option value='' disabled defaultValue>
+                Pick your country
+              </option>
+              {/*
+                This doesn't seem to render for whatever reason
+                perhaps I needs to load in a function first??
+               */}
+              {Countries.forEach(country => {
+                console.log(country.Code)
+                return <option>{country.Code}</option>
+              })}
+            </select>
             <button form='searchForm' className='submit'>
               <SearchIcon title='Magnifying glass' />
               <span className='sr-only'>Search</span>

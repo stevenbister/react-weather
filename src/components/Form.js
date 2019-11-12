@@ -1,9 +1,9 @@
-import Countries from '../countries'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { ReactComponent as SearchIcon } from '../icons/search.svg'
 import '../styles/grid.scss'
 import '../styles/form.scss'
+import Countries from '../countries'
 
 export class Form extends React.Component {
   constructor (props) {
@@ -25,6 +25,7 @@ export class Form extends React.Component {
   handleSelectChange (e) {
     this.setState({ select: e.target.value })
   }
+
 
   render () {
     return (
@@ -60,13 +61,9 @@ export class Form extends React.Component {
               <option value='' disabled defaultValue>
                 Pick your country
               </option>
-              {/*
-                This doesn't seem to render for whatever reason
-                perhaps I needs to load in a function first??
-               */}
-              {Countries.forEach(country => {
-                console.log(country.Code)
-                return <option>{country.Code}</option>
+
+              {Countries.map((country) => {
+                return <option key={country.Code} value={country.Code}>{country.Name}</option>
               })}
             </select>
             <button form='searchForm' className='submit'>

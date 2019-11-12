@@ -11,6 +11,7 @@ $grey: #d0d0cf;
 .form-group {
   display: flex;
   flex-flow: row wrap;
+  justify-content: center;
 
   input[type='text'] {
     border-top-left-radius: $border-radius;
@@ -24,17 +25,25 @@ $grey: #d0d0cf;
   }
 }
 
-.input__text {
+.input__text,
+.input__select {
   background: transparent;
   border: solid 1px var(--grey);
   color: darken($grey, 30%);
-  flex-grow: 2;
   font-size: rem-calc(15);
   padding: 8px 12px;
 
   &--dark {
     color: var(--white);
   }
+}
+
+.input__text {
+  width: calc(70% - 40px);
+}
+
+.input__select {
+  width: calc(30% - 40px);
 }
 
 .submit {

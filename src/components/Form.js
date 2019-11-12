@@ -58,6 +58,11 @@ export class Form extends React.Component {
               name='countrySelect'
               value={this.state.select}
               onChange={this.handleSelectChange}
+              className={
+                this.props.mode === 'night'
+                  ? 'input__select input__select--dark'
+                  : 'input__select'
+              }
             >
               <option value='' disabled defaultValue>
                 Pick your country

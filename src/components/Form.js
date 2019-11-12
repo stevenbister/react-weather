@@ -41,7 +41,7 @@ export class Form extends React.Component {
             <input
               id='citySearch'
               type='text'
-              name='search'
+              name='citySearch'
               placeholder='Search for your city...'
               onChange={this.handleTextInputChange}
               value={this.state.textInput}
@@ -55,6 +55,7 @@ export class Form extends React.Component {
             <label htmlFor='countrySelect'>Pick your country</label>
             <select
               id='countrySelect'
+              name='countrySelect'
               value={this.state.select}
               onChange={this.handleSelectChange}
             >
@@ -79,5 +80,6 @@ export class Form extends React.Component {
 
 // eslint-disable-next-line react/no-typos
 Form.propTypes = {
-  search: PropTypes.string
+  textInput: PropTypes.string,
+  select: PropTypes.string
 }

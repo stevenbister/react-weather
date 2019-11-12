@@ -31,7 +31,6 @@ export class WeatherContainer extends React.Component {
 
   apiCall = async call => {
     const CITY = this.props.searchTerm
-    const COUNTRY = 'uk'
     const COORDS = call
     const UNITS = 'metric'
 
@@ -39,7 +38,7 @@ export class WeatherContainer extends React.Component {
     // TODO: add postcode option
     const APIgetString = () => {
       if (CITY) {
-        return `?q=${CITY},${COUNTRY}&units=${UNITS}&APPID=${OPENWEATHERAPIKEY}`
+        return `?q=${CITY}&units=${UNITS}&APPID=${OPENWEATHERAPIKEY}`
       } else {
         return `?${COORDS}&units=${UNITS}&APPID=${OPENWEATHERAPIKEY}`
       }

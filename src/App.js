@@ -18,7 +18,7 @@ class App extends React.Component {
   // Set search state to form's name='search' input
   search = (e) => {
     e.preventDefault() // Need to call this here to prevent the page reloading
-    this.setState({ search: e.target.elements.search.value })
+    this.setState({ search: e.target.elements.citySearch.value + `, ` + e.target.elements.countrySelect.value })
   }
 
   // Function to pass the icon from the child up to app's state
